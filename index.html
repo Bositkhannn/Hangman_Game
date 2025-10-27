@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="dark">
+    <div class="theme-switcher">
+      <button class="theme-btn" data-theme="light">☀️</button>
+      <button class="theme-btn active" data-theme="dark">🌙</button>
+      <button class="theme-btn" data-theme="colorful">🌈</button>
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <h1 class="title">🎯 Hangman Game</h1>
+        <div class="wins-board">
+          <div class="wins-item">
+            <span class="wins-label">Wins:</span>
+            <span id="wins-count" class="wins-value">0</span>
+          </div>
+        </div>
+      </header>
+
+      <p class="title1">Made by: Akmalov Bositxon</p>
+
+      <br>
+      <div class="game-controls">
+        <div class="difficulty-selector">
+          <label>Difficulty:</label>
+          <select id="difficulty">
+            <option value="easy">Easy (4-5 letters)</option>
+            <option value="medium" selected>Medium (6-7 letters)</option>
+            <option value="hard">Hard (8-9 letters)</option>
+            <option value="expert">Expert (10+ letters)</option>
+          </select>
+        </div>
+
+        <div class="category-selector">
+          <label>Category:</label>
+          <select id="category">
+            <option value="all">All Words</option>
+            <option value="animals">Animals</option>
+            <option value="countries">Countries</option>
+            <option value="programming">Programming</option>
+            <option value="science">Science</option>
+            <option value="food">Food & Drinks</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="game-info">
+        <div class="hint-section">
+          <button id="hint-btn" class="hint-btn">💡 Get Hint (Cost: 1 hint)</button>
+          <span id="hints-remaining" class="hints-remaining">Hints: 3</span>
+        </div>
+        <div class="wrong-count">
+          <span>Wrong guesses: </span>
+          <span id="wrong-count">0</span>/<span id="max-wrong">0</span>
+        </div>
+      </div>
+
+      <div class="game-container">
+        <div class="hangman-container">
+          <svg height="280" width="220" class="figure-container" viewBox="0 0 220 280" preserveAspectRatio="xMidYMid meet">
+            <line x1="60" y1="20" x2="140" y2="20" class="gallows" />
+            <line x1="140" y1="20" x2="140" y2="50" class="gallows" />
+            <line x1="60" y1="20" x2="60" y2="230" class="gallows" />
+            <line x1="20" y1="230" x2="100" y2="230" class="gallows" />
+
+            <g class="figure-parts" transform="translate(0,0)">
+              <circle cx="140" cy="70" r="20" class="figure-part" />
+              <line x1="140" y1="90" x2="140" y2="150" class="figure-part" />
+              <line x1="140" y1="120" x2="120" y2="100" class="figure-part" />
+              <line x1="140" y1="120" x2="160" y2="100" class="figure-part" />
+              <line x1="140" y1="150" x2="120" y2="180" class="figure-part" />
+              <line x1="140" y1="150" x2="160" y2="180" class="figure-part" />
+            </g>
+          </svg>
+        </div>
+
+        <div class="game-sidebar">
+          <div class="wrong-letters-container">
+            <h3>Wrong Letters</h3>
+            <div id="wrong-letters" class="wrong-letters"></div>
+          </div>
+
+          <div class="word-progress">
+            <h3>Guess the Word</h3>
+            <div class="word" id="word"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="keyboard-container">
+        <div class="keyboard" id="keyboard"></div>
+      </div>
+
+      <div class="popup-container" id="popup-container">
+        <div class="popup">
+          <div class="popup-icon" id="popup-icon">🎉</div>
+          <h2 id="final-message"></h2>
+          <h3 id="final-message-reveal-word"></h3>
+          <div class="popup-stats">
+            <div>Wins: <span id="popup-wins">0</span></div>
+          </div>
+          <button id="play-button" class="play-again-btn">Play Again</button>
+        </div>
+      </div>
+
+      <div class="notification-container" id="notification-container">
+        <div class="notification-icon">💡</div>
+        <p id="notification-message"></p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
