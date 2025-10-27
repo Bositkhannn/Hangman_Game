@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Hangman Game</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body data-theme="dark">
-    <div class="theme-switcher">
-      <button class="theme-btn" data-theme="light">☀️</button>
-      <button class="theme-btn active" data-theme="dark">🌙</button>
-      <button class="theme-btn" data-theme="colorful">🌈</button>
-    </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Hangman Pro — Mobile Friendly</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="dark">
+  <div class="theme-switcher" aria-hidden="false">
+    <button class="theme-btn" data-theme="light" aria-label="Light theme">☀️</button>
+    <button class="theme-btn active" data-theme="dark" aria-label="Dark theme">🌙</button>
+    <button class="theme-btn" data-theme="colorful" aria-label="Colorful theme">🌈</button>
+  </div>
 
-    <div class="container">
-      <header class="header">
-        <h1 class="title">🎯 Hangman Game</h1>
-        <div class="wins-board">
-          <div class="wins-item">
-            <span class="wins-label">Wins:</span>
-            <span id="wins-count" class="wins-value">0</span>
-          </div>
+  <main class="container" id="app">
+    <header class="header">
+      <h1 class="title">🎯 Hangman Pro</h1>
+      <div class="meta">
+        <div class="wins-box">
+          <span class="wins-label">Wins</span>
+          <strong id="wins-count" class="wins-value">0</strong>
         </div>
-      </header>
+      </div>
+    </header>
 
-      <p class="title1">Made by: Akmalov Bositxon</p>
-
-      <br>
-      <div class="game-controls">
-        <div class="difficulty-selector">
-          <label>Difficulty:</label>
-          <select id="difficulty">
-            <option value="easy">Easy (4-5 letters)</option>
-            <option value="medium" selected>Medium (6-7 letters)</option>
-            <option value="hard">Hard (8-9 letters)</option>
-            <option value="expert">Expert (10+ letters)</option>
+    <section class="controls">
+      <div class="select-row">
+        <label>
+          Difficulty
+          <select id="difficulty" aria-label="Select difficulty">
+            <option value="easy">Easy (4–5)</option>
+            <option value="medium" selected>Medium (6–7)</option>
+            <option value="hard">Hard (8–9)</option>
+            <option value="expert">Expert (10+)</option>
           </select>
-        </div>
+        </label>
 
-        <div class="category-selector">
-          <label>Category:</label>
-          <select id="category">
+        <label>
+          Category
+          <select id="category" aria-label="Select category">
             <option value="all">All Words</option>
             <option value="animals">Animals</option>
             <option value="countries">Countries</option>
@@ -48,74 +46,68 @@
             <option value="science">Science</option>
             <option value="food">Food & Drinks</option>
           </select>
-        </div>
+        </label>
       </div>
 
-      <div class="game-info">
-        <div class="hint-section">
-          <button id="hint-btn" class="hint-btn">💡 Get Hint (Cost: 1 hint)</button>
-          <span id="hints-remaining" class="hints-remaining">Hints: 3</span>
-        </div>
-        <div class="wrong-count">
-          <span>Wrong guesses: </span>
-          <span id="wrong-count">0</span>/<span id="max-wrong">0</span>
-        </div>
+      <div class="info-row">
+        <button id="hint-btn" class="hint-btn" aria-live="polite">💡 Hint</button>
+        <div class="hints" id="hints-remaining">Hints: 3</div>
+        <div class="wrong-count">Wrong: <span id="wrong-count">0</span>/<span id="max-wrong">0</span></div>
+      </div>
+    </section>
+
+    <section class="game">
+      <div class="visual" aria-hidden="true">
+        <svg class="figure-container" viewBox="0 0 220 280" preserveAspectRatio="xMidYMid meet" role="img">
+          <line x1="60" y1="20" x2="140" y2="20" class="gallows" />
+          <line x1="140" y1="20" x2="140" y2="50" class="gallows" />
+          <line x1="60" y1="20" x2="60" y2="230" class="gallows" />
+          <line x1="20" y1="230" x2="100" y2="230" class="gallows" />
+
+          <g class="figure-parts">
+            <circle cx="140" cy="70" r="20" class="figure-part" />
+            <line x1="140" y1="90" x2="140" y2="150" class="figure-part" />
+            <line x1="140" y1="120" x2="120" y2="100" class="figure-part" />
+            <line x1="140" y1="120" x2="160" y2="100" class="figure-part" />
+            <line x1="140" y1="150" x2="120" y2="180" class="figure-part" />
+            <line x1="140" y1="150" x2="160" y2="180" class="figure-part" />
+          </g>
+        </svg>
       </div>
 
-      <div class="game-container">
-        <div class="hangman-container">
-          <svg height="280" width="220" class="figure-container" viewBox="0 0 220 280" preserveAspectRatio="xMidYMid meet">
-            <line x1="60" y1="20" x2="140" y2="20" class="gallows" />
-            <line x1="140" y1="20" x2="140" y2="50" class="gallows" />
-            <line x1="60" y1="20" x2="60" y2="230" class="gallows" />
-            <line x1="20" y1="230" x2="100" y2="230" class="gallows" />
-
-            <g class="figure-parts" transform="translate(0,0)">
-              <circle cx="140" cy="70" r="20" class="figure-part" />
-              <line x1="140" y1="90" x2="140" y2="150" class="figure-part" />
-              <line x1="140" y1="120" x2="120" y2="100" class="figure-part" />
-              <line x1="140" y1="120" x2="160" y2="100" class="figure-part" />
-              <line x1="140" y1="150" x2="120" y2="180" class="figure-part" />
-              <line x1="140" y1="150" x2="160" y2="180" class="figure-part" />
-            </g>
-          </svg>
+      <aside class="sidebar">
+        <div class="word-progress">
+          <h3 class="sr-only">Guess the word</h3>
+          <div id="word" class="word" aria-live="polite"></div>
         </div>
 
-        <div class="game-sidebar">
-          <div class="wrong-letters-container">
-            <h3>Wrong Letters</h3>
-            <div id="wrong-letters" class="wrong-letters"></div>
-          </div>
-
-          <div class="word-progress">
-            <h3>Guess the Word</h3>
-            <div class="word" id="word"></div>
-          </div>
+        <div class="wrong-letters-container">
+          <h3 class="sr-only">Wrong letters</h3>
+          <div id="wrong-letters" class="wrong-letters" aria-live="polite"></div>
         </div>
-      </div>
+      </aside>
+    </section>
 
-      <div class="keyboard-container">
-        <div class="keyboard" id="keyboard"></div>
-      </div>
+    <div id="keyboard-wrap" class="keyboard-wrap">
+      <div id="keyboard" class="keyboard" role="application" aria-label="On-screen keyboard"></div>
+    </div>
 
-      <div class="popup-container" id="popup-container">
-        <div class="popup">
-          <div class="popup-icon" id="popup-icon">🎉</div>
-          <h2 id="final-message"></h2>
-          <h3 id="final-message-reveal-word"></h3>
-          <div class="popup-stats">
-            <div>Wins: <span id="popup-wins">0</span></div>
-          </div>
-          <button id="play-button" class="play-again-btn">Play Again</button>
-        </div>
-      </div>
-
-      <div class="notification-container" id="notification-container">
-        <div class="notification-icon">💡</div>
-        <p id="notification-message"></p>
+    <div class="popup-container" id="popup-container" aria-hidden="true">
+      <div class="popup" role="dialog" aria-modal="true">
+        <div class="popup-icon" id="popup-icon">🎉</div>
+        <h2 id="final-message"></h2>
+        <h3 id="final-message-reveal-word"></h3>
+        <div class="popup-stats">Wins: <span id="popup-wins">0</span></div>
+        <button id="play-button" class="play-again-btn">Play Again</button>
       </div>
     </div>
 
-    <script src="script.js"></script>
-  </body>
+    <div class="notification-container" id="notification-container" aria-live="assertive">
+      <div class="notification-icon">💡</div>
+      <p id="notification-message"></p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>
